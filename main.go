@@ -12,15 +12,22 @@ type contact struct {
 }
 
 func main() {
-	http.HandleFunc("/", get)
+	http.HandleFunc("/", all)
+	http.HandleFunc("/product", product)
+
 	http.HandleFunc("/save", post)
 
 	http.ListenAndServe(":8080", nil)
 }
 
-func get(w http.ResponseWriter, r *http.Request) {
-	c := contact{Name: "sittikiat", Tel: "0992828286"}
-	json.NewEncoder(w).Encode(c)
+func all(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprint(w, "all")
+}
+
+func product(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprint(w, "product")
+	// c := contact{Name: "sittikiat", Tel: "0992828286"}
+	// json.NewEncoder(w).Encode(c)
 }
 
 func post(w http.ResponseWriter, r *http.Request) {
